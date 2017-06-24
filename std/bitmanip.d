@@ -2193,18 +2193,21 @@ if (isIntegral!T || isSomeChar!T || isBoolean!T)
         static assert(0, T.stringof ~ " unsupported by swapEndian.");
 }
 
+pragma(inline, true)
 private ushort swapEndianImpl(ushort val) @safe pure nothrow @nogc
 {
     return ((val & 0xff00U) >> 8) |
            ((val & 0x00ffU) << 8);
 }
 
+pragma(inline, true)
 private uint swapEndianImpl(uint val) @trusted pure nothrow @nogc
 {
     import core.bitop : bswap;
     return bswap(val);
 }
 
+pragma(inline, true)
 private ulong swapEndianImpl(ulong val) @trusted pure nothrow @nogc
 {
     import core.bitop : bswap;
